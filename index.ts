@@ -1,41 +1,59 @@
 /*
-Para un sistema de gestión de tareas, deseamos registrar 
-todas las tareas, cada tarea tiene asociada la siguiente 
-información: nombre, fecha de inicio, descripción y estatus,
-el estatus debe ser uno de los siguientes: pendiente, en proceso, 
-terminada, cancelada. Además se requiere una lista con todas 
-las tareas pendientes, las tareas terminadas y las canceladas.
+
+D2 requiere un registro de inventario básico, para ello necesita saber la lista de productos existentes en su  almacén principal, cada producto debe tener asignados los siguientes atributos: Nombre, fecha de vencimiento, precio, peso, uuid, distribuidor, cantidad.
+
+Se cuenta también con los datos de los distribuidores entre ellos: nombre, teléfono, productos que ofrece. Además, D2 requiere las siguientes listas: productos en almacén, productos por solicitar a distribuidor y lista de distribuidores.
+
 */
 
-class Tarea {
-    nombreTarea: string;
-    fechaInicioTarea: number;
-    descripcionTarea: string;
+class Producto{
+    nombre: string;
+    fechaVencimiento: number;
+    precio: number;
+    id: number;
+    distribuidor: Distribuidor[];
     estado: Estado;
- }
- 
-enum Estado {
-    pendiente = "Pendiente",
-    proceso = "En proceso",
-    terminada = "terminada",
-    cancelada = "cancelada",
 }
- 
 
-let tarea: Tarea[] = [
+class Distribuidor{
+    nombre_distribuidor: string;
+    telefono_distribuidor: number;
+}
+
+enum Estado {
+    almacen = "en almacen",
+    solicitar = "por solicitar",
+}
+
+let producto:  Producto[] = [
     {
-        nombreTarea : "Programación",
-        fechaInicioTarea: 25082019,
-        descripcionTarea: " Ejercicos de TypeScript ",
-        estado: Estado.pendiente,
+        nombre: "arepas",
+        fechaVencimiento: 10082201,
+        precio: 2000,
+        id: 5,
+        estado: Estado.almacen,
+        distribuidor: [
+            {
+                nombre_distribuidor: "Nestle",
+                telefono_distribuidor: 4512020,
+            }
+        ],
+
     },
-    
     {
-        nombreTarea : "ingles",
-        fechaInicioTarea: 25082019,
-        descripcionTarea: " Ejercicos diarios de slang ",
-        estado: Estado.proceso,
-    }
-] 
- 
- console.log(tarea);
+        nombre: "doritos",
+        fechaVencimiento: 9082021,
+        precio: 4000,
+        id: 9,
+        estado: Estado.solicitar,
+        distribuidor: [
+            {
+                nombre_distribuidor: "Frito lay",
+                telefono_distribuidor: 2959595,
+            },
+        ]
+    },
+
+]
+
+console.log(producto)
